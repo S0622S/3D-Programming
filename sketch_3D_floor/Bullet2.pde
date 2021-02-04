@@ -1,29 +1,30 @@
-class Bullet extends GameObject {
+class Bullet2 extends GameObject {
 
   PVector dir;
   float speed;
 
 
-  Bullet() {
-    super(eyex, eyey, eyez, 10);  //GameObject( , , , )
-    speed = 70;
-    float vx = cos(leftRightAngle);
-    float vy = tan(upDownAngle);
-    float vz = sin(leftRightAngle);
-    dir = new PVector(vx, vy, vz);
-    dir.setMag(speed);
-  }
-    Bullet(float x, float y, float z) {
+  //Bullet2() {
+  //  super(eyex, eyey, eyez, 10);  //GameObject( , , , )
+  //  speed = 70;
+  //  float vx = cos(leftRightAngle);
+  //  float vy = tan(upDownAngle);
+  //  float vz = sin(leftRightAngle);
+  //  dir = new PVector(vx, vy, vz);
+  //  dir.setMag(speed);
+  //}
+
+  Bullet2(float x, float y, float z) {
     super(x, y, z, 20);  //GameObject( , , , )
-    speed = 40;
+    speed = 20;
     float vx = eyex - loc.x;
     float vy = eyey - loc.y;
     float vz = eyez - loc.z;
     dir = new PVector(vx, vy, vz);
     dir.setMag(speed);
   }
-  
-  
+
+
 
   void act() {
 
@@ -42,7 +43,15 @@ class Bullet extends GameObject {
       objects.add(new Particle(loc.x, loc.y, loc.z, size/2));
       objects.add(new Particle(loc.x, loc.y, loc.z, size/2));
     }
-    
-    
+  }
+
+  void show() {
+    world.pushMatrix();
+    world.translate(loc.x, loc.y, loc.z);
+    world.fill(rblack);
+    world.strokeWeight(5);
+    world.stroke(100);
+    world.box(size);
+    world.popMatrix();
   }
 }
